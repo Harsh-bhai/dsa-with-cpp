@@ -238,6 +238,5 @@ int main() {
     BinaryTree b;
     b.initBinaryTree();
     b.postOrder();
-    cout<<b.internalNodes();
     return 0;
 }
