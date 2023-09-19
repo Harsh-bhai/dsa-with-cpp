@@ -154,19 +154,59 @@ class BinarySearchTree{
             }
             return node;
         }
+
+        void CreateTreeFromPreOrder(int arr[],int len){
+            return CreateTreeFromPreOrder(root,arr,len);
+        }
+        void CreateTreeFromPreOrder(TreeNode * node,int arr[],int len){
+            stack<TreeNode **> s;
+            TreeNode * t, *p;
+            int i=0;
+            root=new TreeNode;
+            root->data=arr[i++];
+            root->left=root->right=NULL;
+            p=root;
+            while(i<len){
+                if(arr[i]<p->data){
+                    t=new TreeNode;
+                    t->data=arr[i++];
+                    t->left=t->right=NULL;
+                    p->left=t;
+                    s.push(&p);
+                    p=t;
+                }
+                else{
+                    TreeNode** top=s.top();
+                    if(arr[i]>p->data && arr[i]<(*top)->data){
+                        t=new TreeNode;
+                        t->data=arr[i++];
+                        p->right=t;
+                        p=t;
+                    }
+                    else{
+                        p=*s.top();
+                        s.pop();
+                    }
+                }
+            }
+        }
         
+        
+
 };
 int main() {
     BinarySearchTree b;
-    b.recursiveInsert(5);
-    b.recursiveInsert(6);
-    b.recursiveInsert(4);
-    b.recursiveInsert(3);
-    b.recursiveInsert(2);
-    b.recursiveInsert(1);
-    b.Delete(5);
-    // cout<<b.height();
-    b.inOrder();
+    // b.recursiveInsert(5);
+    // b.recursiveInsert(6);
+    // b.recursiveInsert(4);
+    // b.recursiveInsert(3);
+    // b.recursiveInsert(2);
+    // b.recursiveInsert(1);
+    // b.Delete(5);
+    // // cout<<b.height();
+    // b.inOrder();
     // cout<<b.search(4);
+    int arr[]={1,2,3,4,5};
+    b.CreateTreeFromPreOrder(arr,5);
     return 0;
 }
