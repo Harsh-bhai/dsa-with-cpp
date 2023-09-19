@@ -107,11 +107,21 @@ class BinarySearchTree{
         TreeNode * inOrderPreceder(){
             return inOrderPreceder(root);
         }
+        TreeNode * inOrderSucessor(){
+            return inOrderSucessor(root);
+        }
 
         TreeNode * inOrderPreceder(TreeNode * node){
-            if(node && node->left){
-                
+            while(node && node->right){
+               node=node->right; 
             }
+            return node;
+        }
+        TreeNode * inOrderSucessor(TreeNode * node){
+            while(node && node->left){
+               node=node->left; 
+            }
+            return node;
         }
 
         void Delete(int key){
@@ -119,6 +129,7 @@ class BinarySearchTree{
         }
 
         TreeNode * Delete(TreeNode * node,int key){
+            TreeNode *temp;
             if(node->left==NULL && node->right==NULL){
                 if(node==root)
                     root=NULL;
@@ -129,9 +140,19 @@ class BinarySearchTree{
                 node->left=Delete(node->left,key);
             else if(key>node->data)
                 node->right=Delete(node->right,key);
-            // else{
-                
-            // }
+            else{
+                if(height(node->left)>height(node->right)){
+                    temp=inOrderPreceder(node->left);
+                    node->data=temp->data;
+                    node->left=Delete(node->left,temp->data);
+                }
+                else{
+                    temp=inOrderSucessor(node->right);
+                    node->data=temp->data;
+                    node->right=Delete(node->right,temp->data);
+                }
+            }
+            return node;
         }
         
 };
@@ -143,6 +164,7 @@ int main() {
     b.recursiveInsert(3);
     b.recursiveInsert(2);
     b.recursiveInsert(1);
+    b.Delete(5);
     // cout<<b.height();
     b.inOrder();
     // cout<<b.search(4);
