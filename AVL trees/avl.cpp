@@ -33,9 +33,9 @@ class AVL{
             return 0;
         }
 
-        // Use avl.md file as reference for better understanding
+        // Use rotation.md file as reference for better understanding
         TreeNode * LLrotation(TreeNode * node){
-            TreeNode * nodel=node->left;  //new root, for more info go to avl.md image
+            TreeNode * nodel=node->left;  //new root, for more info go to rotation.md image
             TreeNode * nodelr=nodel->right;
                 // Link nodes
             nodel->right=node;
@@ -66,10 +66,35 @@ class AVL{
             return nodelr;
         }
         TreeNode * RRrotation(TreeNode * node){
-            return NULL;
+            TreeNode * noder=node->right;
+            TreeNode * noderl=noder->left;
+
+            noder->left=node;
+            node->right=noderl;
+
+            noderl->height=nodeHeight(noderl);
+            node->height=nodeHeight(node);
+
+            if(node==root)
+                root=noder;
+            return noder;
         }
         TreeNode * RLrotation(TreeNode * node){
-            return NULL;
+            TreeNode * noder=node->right;
+            TreeNode * noderl=noder->left; //new root
+
+            node->right=noderl->left;
+            noder->left=noderl->right;
+            noderl->right=noder;
+            noderl->left=node;
+
+            noderl->height=nodeHeight(noderl);
+            node->height=nodeHeight(node);
+            noder->height=nodeHeight(noder);
+
+            if(node==root)
+                root=noderl;
+            return noderl;
         }
         void insert(int key){
             root=insert(root,key);
@@ -116,8 +141,8 @@ class AVL{
 int main() {
     AVL a;
     a.insert(10);
-    a.insert(5);
-    a.insert(7);
+    a.insert(15);
+    a.insert(12);
     a.inOrder();
     return 0;
 }

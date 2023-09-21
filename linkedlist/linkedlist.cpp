@@ -84,7 +84,7 @@ public:
     int max()
     {
         Node *p = head;
-        int m = p->data;
+        int m = p->data;   //assuming m as max value
         p = p->next;
         while (p)
         {
@@ -127,7 +127,7 @@ public:
         {
             if (p->data == element)
             {
-                q->next = p->next;
+                q = p->next;
                 p->next = head;
                 head = p;
                 return p;
@@ -174,6 +174,9 @@ public:
         }
     }
 
+    //take a pointer and check its next.data<element or not 
+    //if greater, then stop and attach new node to pointer.next 
+    //else pointer++
     Node* insertSorted(int element){
         Node* p=head;
         Node* t=new Node;
@@ -211,6 +214,7 @@ public:
         return deletedValue;
     }
 
+    //take 2 pointers(1 tail pointer, let say i, j respectively) and then check whether j>i, if yes then sorted 
     bool isSorted(){
         Node* ptr=head;
         while(ptr->next){
@@ -222,7 +226,7 @@ public:
     }
 
     void removeDuplicates(){
-        Node *ptr=head->next;
+        Node *ptr=head->next;  //tail pointer
         Node *q=head;
         while (ptr)
         {
@@ -239,6 +243,7 @@ public:
         }
     }
 
+    // take an array and copy linked list data in it , then reverse copy the data from end into linkedlist
     void reverse(){
         int len=length();
         int arr[len],i=0;
@@ -256,7 +261,7 @@ public:
         }
     }
 
-
+    //take 3 pointers such that r is tail of q,q is tail of p.
     void reverse2(){
         Node*p=head;
         Node*q=NULL;
@@ -385,7 +390,9 @@ int main()
     LinkedList l(arr, 5);
     int arr2[] = {11, 31, 31, 51, 91};
     LinkedList l2(arr2, 5);
-    l.findMiddle();
+    // l2.fastSearch(11);
+    l2.reverse2();
+    // l.findMiddle();
     // LinkedList l;
     // l.display();
     // l.display();
