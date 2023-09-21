@@ -13,7 +13,7 @@ catalan no.= t(n)=(2n^Cn) \* n!/(n+1) , n! is due to they can arrange in n! ways
 
 # NO. OF NODES w.r.t. HEIGHT in Binary Tree
 
-min no.of nodes=height + 1
+min no.of nodes=height + 1  
 max no.of nodes=2^(h+1) - 1
 
 # calculate HEIGHT w.r.t. NO. OF NODES
