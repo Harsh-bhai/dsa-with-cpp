@@ -54,3 +54,33 @@ just like BST, inorder predecer or successor will take its place
 ## Heights vs Nodes
 
 ![Alt text](image-6.png)
+
+# 2-3-4 Trees
+![Alt text](image-7.png)
+
+## Insertion
+![Alt text](image-8.png)
+* If there is a situation where we have to split the node and there is even no. of keys, then the split can be
+    + Right Biased (more keys on right node)
+    + Left Biased (more keys on left node)  
+as shown in diagram
+
+![Alt text](image-9.png)
+
+## Deletion
+Similar to 2-3 trees
+
+# Red-Black Trees
+![Alt text](image-10.png)
+
+## Insertion
+* If both parent and uncle are red : recolor them to black and grand parent to red, do this recursively upwards
+* If one is black and one is red : perform ROTATIONS accordingly  
+
+If there is RED-RED conflict,then check whether👇
+![Alt text](image-11.png)
+here  
+* p=parent
+* u=uncle
+* g=grand parent
+* n=new child
