@@ -9,7 +9,7 @@ void insertionSort(int arr[],int n){
     {
         j=i-1;
         toBeInserted=arr[i];  // i th element is to be inserted in the sorted array
-        while (j>-1 && arr[j]>toBeInserted)  //check whether the element to be inserted < sorted array elements
+        while (j>-1 && arr[j]>toBeInserted)  //check whether the element to be inserted < sorted array elements and if j==-1, end of list
         {
             arr[j+1]=arr[j];     //shift elements backward
             j--;
